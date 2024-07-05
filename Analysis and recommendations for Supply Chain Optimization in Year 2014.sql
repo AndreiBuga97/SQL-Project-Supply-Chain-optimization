@@ -1,5 +1,5 @@
 ﻿
--- Analysis and recommendations for Supply Chain Optimization in Year 2014.
+-- BUSSINES GOAL: Analysis and recommendations for Supply Chain Optimization in Year 2014.
 -- Data Base used: Adventure Works 2016
 
 
