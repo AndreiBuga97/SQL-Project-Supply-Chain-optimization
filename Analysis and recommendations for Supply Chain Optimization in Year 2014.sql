@@ -432,13 +432,13 @@ where BusinessEntityID not in (
 
 
 
--- Calculating he delivery deadline :
+-- Calculating the delivery deadline :
  /*
-OBSERVATIONS: Out of 86 vendors, 78 estimated a delivery time of 35 days. 8 of these vendors offer a minimum term of 45 days, which is too long from our perspective.
+Among the 86 vendors evaluated, 78 indicate an estimated delivery time of 35 days. Notably, 8 vendors specify a minimum delivery time of 45 days, which exceeds our preferred timeframe.
 
 RECOMENDATIONS:
-a) Inform the necessary departments to engage with the 7 vendors and change/optimize the delivery procedure to achieve a reduced delivery time.
-b) Modify performance ratings
+a) Coordinate with the relevant departments to engage with the 7 vendors and initiate changes or optimizations in their delivery procedures to achieve a shorter delivery time.
+b) Revise performance evaluations accordingly.
 
 */
 
