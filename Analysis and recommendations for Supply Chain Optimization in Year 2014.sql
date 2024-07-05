@@ -19,7 +19,7 @@ from Purchasing.PurchaseOrderHeader h
 		on h.PurchaseOrderID=d.PurchaseOrderID
 WHERE d.PurchaseOrderDetailID is null
 
--- Checkeing if there are products that have not been purchased in year 2014. These products may be considered to be removed from inventory.
+-- Checking if there are products that have not been purchased in year 2014. These products may be considered to be removed from inventory.
 -- Below is a query showing a list of ProductID and their names that have not been ordered in 2014:
 
 select P.ProductID, P.[Name]
@@ -40,7 +40,7 @@ from Purchasing.PurchaseOrderDetail POD
 where POD.ProductID = 1 AND YEAR(POH.OrderDate) = 2014
 
 
---  Cheching if we have products that haven't been ordered .
+--  Checking if we have products that haven't been ordered .
 
 -- Conclusion, all the products have been ordered at least once - no null values.
 
@@ -291,7 +291,7 @@ where p.StandardCost<>0 and p.ListPrice<>0
 group by i.ProductID, p.[Name],v.StandardPrice,	p.StandardCost
 order by InventoryTotalAmountPerProduct desc
 
--- List of Prducts in Stock for Inventory:
+-- List of Products in Stock for Inventory:
 
 select  i.ProductID,
 		p.[name] as ProductName,
@@ -436,7 +436,7 @@ where BusinessEntityID not in (
  /*
 OBSERVATIONS: Out of 86 vendors, 78 estimated a delivery time of 35 days. 8 of these vendors offer a minimum term of 45 days, which is too long from our perspective.
 
-RECOMANDATIONS:
+RECOMENDATIONS:
 a) Inform the necessary departments to engage with the 7 vendors and change/optimize the delivery procedure to achieve a reduced delivery time.
 b) Modify performance ratings
 
@@ -471,7 +471,7 @@ FROM   (SELECT DISTINCT b.NAME,
 WHERE  StatusVendor = 'Late' 
 order by NoOfDaysforDelivery;
 
- -- How can we otpimize the Purchase Orders to reduce transportation costs?
+ -- How can we optimize the Purchase Orders to reduce transportation costs?
 
   /*
   ShipBase = Minimum shipping charge.
