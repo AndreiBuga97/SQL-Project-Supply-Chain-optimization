@@ -3,7 +3,7 @@
 -- Data Base used: Adventure Works 2016
 
 
--- Example of test: We checked if there is any product that does not have an associated vnedor.
+-- Example of test: Checking if there is any product that does not have an associated vnedor.
 
 select pv.[Name]
 from Purchasing.Vendor pv
@@ -11,7 +11,7 @@ from Purchasing.Vendor pv
 		on pv.BusinessEntityID = v.BusinessEntityID
 where v.BusinessEntityID is null
 
--- We checked if there are purchase orders without order details. This could indicate an issue with the order registration process.
+-- Checking if there are purchase orders without order details. This could indicate an issue with the order registration process.
 
 select h.PurchaseOrderID
 from Purchasing.PurchaseOrderHeader h
@@ -19,16 +19,16 @@ from Purchasing.PurchaseOrderHeader h
 		on h.PurchaseOrderID=d.PurchaseOrderID
 WHERE d.PurchaseOrderDetailID is null
 
--- We checked  if there are products that have not been in year 2014. These products may be considered to be removed from inventory.
+-- Checkeing if there are products that have not been purchased in year 2014. These products may be considered to be removed from inventory.
 -- Below is a query showing a list of ProductID and their names that have not been ordered in 2014:
 
-SELECT P.ProductID, P.[Name]
-FROM Production.Product P
-WHERE NOT EXISTS (
-    SELECT 1 
-    FROM Purchasing.PurchaseOrderDetail POD
-    JOIN Purchasing.PurchaseOrderHeader POH ON POD.PurchaseOrderID = POH.PurchaseOrderID
-    WHERE POD.ProductID = P.ProductID AND YEAR(POH.OrderDate) = 2014
+select P.ProductID, P.[Name]
+from Production.Product P
+where not exists (
+    select 1 
+    from Purchasing.PurchaseOrderDetail POD
+    join Purchasing.PurchaseOrderHeader POH on POD.PurchaseOrderID = POH.PurchaseOrderID
+    where POD.ProductID = P.ProductID AND YEAR(POH.OrderDate) = 2014
 				)
 -- To verify the accuracy of the data obtained from the above query, we are querying for ProductID 1:
 
@@ -53,9 +53,9 @@ from Purchasing.Vendor v
 		on h.PurchaseOrderID=d.PurchaseOrderID
 where d.ProductID is null ;
 
--- Analizing the trend per year (2012-2014)
+-- Analyzing the trend for years (2012-2014)
 
--- Top 5 least ordered products in year 2014.
+-- Showing the top 5 least ordered products in year 2014.
 
 with ProductsOrdered as (
 						select  d.ProductID,
@@ -83,7 +83,7 @@ select top 5  ProductID,
 from ProductsOrdered;
 
 
--- Top 5 least ordered products in year 2013.
+-- Showing the top 5 least ordered products in year 2013.
 
 with ProductsOrdered as (
 						select  d.ProductID,
@@ -110,7 +110,7 @@ select top 5  ProductID,
 	ProductRank
 from ProductsOrdered;
 
--- Top 5 least ordered products in year 2012.
+-- Showing the top 5 least ordered products in year 2012.
 
 with ProductsOrdered as (
 						select  d.ProductID,
@@ -138,7 +138,7 @@ select top 5  ProductID,
 from ProductsOrdered;
 
 
--- Top 5 least ordered products in Q4, 2014.
+-- Showing the top 5 least ordered products in Q4, 2014.
 
 
 with ProductsOrdered as (
@@ -192,7 +192,7 @@ select top 5  ProductID,
 	ProductRank
 from ProductsOrdered;
 
--- Top 10 least used vendors used in 2014.
+-- Showing the top 10 least used vendors used in 2014.
 
 with ProductsOrdered as (
 						select  v.BusinessEntityID as VendorID,
@@ -339,10 +339,10 @@ select top 5  ProductID,
 	ProductRank
 from ProductsOrdered;
 
--- Second, we took them and compered them to Inventory List above;
+-- Second, comparing them to the Inventory List above;
 /*
 	QUESTION: 
-	Why the Standard Cost and List Price are 0?
+	Why the Standard Cost and List Price is 0?
 
 	OBSERVATION:
 	We can see that even though we have a significant stock in Inventory List, the Standard Cost, List Price, InventoryAmountPerInventoryProduct and InventoryAmountPerListPriceProduct are 0.
@@ -396,7 +396,7 @@ select dbo.fnGetProductInventory(379);
 
 
 
-/* We checked if there are vendors who have not received orders in the last 18  and 24 months.
+/* Checking if there are vendors who have not received orders in the last 18  and 24 months.
 These suppliers could be reviewed for possible discontinuation of the business relationship. */
 
 -- A query to show the vendors who have not received orders for 18 months:
@@ -502,8 +502,8 @@ ORDER  BY TotalOrders desc
 
   RECOMMANDATIONS:
 
-  a) We recommend using ShipMethod 3 only in urgent cases when we have exhausted the other four options.
-  b) We recommend reviewing the policy to collaborate more with ShipMethod 1 in the future to reduce costs.
+  a) Using ShipMethod 3 only in urgent cases when we have exhausted the other four options.
+  b) Reviewing the policy to collaborate more with ShipMethod 1 in the future to reduce costs.
 
   */
 
